@@ -99,52 +99,57 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
    }
    
     return (
-    <section className='flex flex-col h-[70vh]'>
-        <section className='flex gap-8 max-smflex-col'>
-            <div className='companion-section'>
+    <section className='flex flex-col max-h-[70vh]  max-sm:p-5'>
+        <section className='flex gap-8 max-sm:flex-col-reverse max-sm:max-h-140 max-sm:items-start max-h-440'>
+            <div className='flex flex-col w-1/4 max-sm:w-full justify-between max-sm:gap-3'>
+            <div className='companion-section '>
                 <div className='companion-avatar' style={{backgroundColor: getSubjectColor(subject)}}>
-                    <div className={cn('absolute transition-opacity duration-1000', callStatus === CallStatus.FINISHED || callStatus === CallStatus.INACTIVE ? 'opacity-1001' : 'opacity-0', callStatus === CallStatus.CONNECTING  && 'opacity-100 animate-pulse')} >
-                        <Image src={`/icons/${subject}.svg`}  alt={subject} width={150} height={150} className='max-sm:w-fit'/>
+                        <div className={cn('absolute transition-opacity duration-1000', callStatus === CallStatus.FINISHED || callStatus === CallStatus.INACTIVE ? 'opacity-1001' : 'opacity-0', callStatus === CallStatus.CONNECTING  && 'opacity-100 animate-pulse')} >
+                            <Image src={`/icons/${subject}.svg`}  alt={subject} width={80} height={80} className='max-sm:w-fit'/>
+                        </div>
+                        <div className={cn('absolute transition-opacity duration-1000', callStatus === CallStatus.ACTIVE ? 'opacity-100' : 'opacity-0')}>
+                            <Lottie  
+                                lottieRef={lottieRef}
+                                animationData={soundwaves}
+                                autoPlay={false}
+                                className='companion-lottie'
+                            />
+                        </div>
                     </div>
-                    <div className={cn('absolute transition-opacity duration-1000', callStatus === CallStatus.ACTIVE ? 'opacity-100' : 'opacity-0')}>
-                        <Lottie  
-                            lottieRef={lottieRef}
-                            animationData={soundwaves}
-                            autoPlay={false}
-                            className='companion-lottie'
-                        />
-                    </div>
-                </div>
-                <p className='font-bold text-2xl'>{name}</p>
+                    <p className='font-bold text-2xl'>{name}</p>
             </div>
-
-            <div className='user-section'>
-                <div className='user-avatar'>
-                    <Image src={userImage} alt={userName} width={130} height={130} className='rounded-lg' />
-                    <p className='font-bold text-2xl'>{userName}</p>
+            <div className='flex justify-between'>
+                    <button 
+                        disabled={callStatus !== CallStatus.ACTIVE}
+                        className='btn-mic w-full' 
+                        onClick={toggleMicrophone}>
+                        <Image src={isMuted ? `/icons/mic-off.svg`  : `/icons/mic-on.svg` } alt={"mic"} width={30} height={30} />
+                        <p className='max-sm:hidden text-sm'>
+                            {isMuted ? 'Turn on microphone' : 'Turn off microphone'}
+                        </p>
+                    </button>
+                    {/* <button 
+                        disabled={callStatus !== CallStatus.ACTIVE}
+                        className='btn-mic' 
+                        onClick={toggleMicrophone}>
+                        <Image src={isMuted ? `/icons/mic-off.svg`  : `/icons/mic-on.svg` } alt={"mic"} width={30} height={30} />
+                        <p className='max-sm:hidden text-sm'>
+                            Repeat
+                        </p>
+                    </button> */}
                 </div>
                 <button 
-                    disabled={callStatus !== CallStatus.ACTIVE}
-                    className='btn-mic' 
-                    onClick={toggleMicrophone}>
-                    <Image src={isMuted ? `/icons/mic-off.svg`  : `/icons/mic-on.svg` } alt={"mic"} width={36} height={36} />
-                    <p className='max-sm:hidden'>
-                        {isMuted ? 'Turn on microphone' : 'Turn off microphone'}
-                    </p>
-                </button>
-                <button 
-                    className={cn('rounded-lg py-2 cursor-pointer transition-colors w-full text-white',callStatus === CallStatus.ACTIVE  ? 'bg-red-700' : 'bg-primary', callStatus === CallStatus.CONNECTING && 'animate-pulse')} 
-                    onClick={callStatus === CallStatus.ACTIVE ? handleDisconnect : handleCall }>
-                    {callStatus === CallStatus.ACTIVE ? 'End Session' : callStatus === CallStatus.CONNECTING ? 'Connecting' : 'Start Session'}
+                        className={cn('rounded-lg py-2 cursor-pointer transition-colors w-full text-white',callStatus === CallStatus.ACTIVE  ? 'bg-red-700' : 'bg-primary', callStatus === CallStatus.CONNECTING && 'animate-pulse')} 
+                        onClick={callStatus === CallStatus.ACTIVE ? handleDisconnect : handleCall }>
+                        {callStatus === CallStatus.ACTIVE ? 'End Session' : callStatus === CallStatus.CONNECTING ? 'Connecting' : 'Start Session'}
                 </button>
             </div>
-        </section>
-        <section className="transcript">
-                <div className="transcript-message no-scrollbar">
+            <section className="transcript w-2/4 max-sm:w-full max-sm:min-h-200 pt-0 max-h-[440px]">
+                <div className="transcript-message no-scrollbar overflow-scroll">
                     {messages.map((message, index) => {
                         if(message.role === 'assistant') {
                             return (
-                                <p key={index} className="max-sm:text-sm">
+                                <p key={index} className="max-sm:text-sm text-xl">
                                     {
                                         name
                                             .split(' ')[0]
@@ -153,7 +158,7 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
                                 </p>
                             )
                         } else {
-                           return <p key={index} className="text-primary max-sm:text-sm">
+                           return <p key={index} className="text-primary max-sm:text-sm text-xl">
                                 {userName}: {message.content}
                             </p>
                         }
@@ -161,7 +166,14 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
                 </div>
 
                 <div className="transcript-fade" />
-            </section>
+        </section>
+            <div className='user-section max-sm:hidden'>
+                <div className='user-avatar relative min-h-110'>
+                    <Image src={userImage} alt={userName} width={130} height={130} className='rounded-lg absolute top-0 left-1/2 -translate-x-1/2 h-full w-auto object-cover' />
+                    <p className='font-bold text-2xl absolute bottom-5 bg-white py-2 px-4 rounded-2xl'>{userName}</p>
+                </div>
+            </div>
+        </section>
     </section>
 )
 }
