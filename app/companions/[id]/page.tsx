@@ -54,6 +54,7 @@ const CompanionSession = async ({params}: CompanionSessionPageProps) => {
         userName={user.firstName}
         userImage={user.imageUrl}
       />
+      
     </main>
   )
 }

@@ -18,6 +18,20 @@ export const createCompanion = async (formData: CreateCompanion) => {
     return data[0];
 }
 
+export const createSessionFeedback = async (formData: CreateCompanion) => {
+    const { userId: author } = await auth();
+    const supabase = createSupabaseClient();
+
+    const { data, error } = await supabase
+        .from('feebacks')
+        .insert({...formData, author })
+        .select();
+
+    if(error || !data) throw new Error(error?.message || 'Failed to create a feeback');
+
+    return data[0];
+}
+
 export const getAllCompanions = async ({
   limit = 10,
   page = 1,

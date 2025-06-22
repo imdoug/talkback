@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import soundwaves from '@/constants/soundwaves.json'
 import { addToSessionHistory } from '@/lib/actions/companion.actions'
+import SessionFeedbackModal from './SessionFeedbackModal'
 
 enum CallStatus {
     INACTIVE = "INACTIVE",
@@ -20,6 +21,8 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
     const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE)
     const [isSpeaking, setIsSpeaking] = useState(false)
     const [isMuted, setIsMuted] = useState(false)
+    const [showModal, setShowModal] = useState(false)
+
     const [messages, setMessages] = useState<SavedMessage[]>([])
 
 
@@ -42,6 +45,7 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
         const onCallEnd = () => {
             setCallStatus(CallStatus.FINISHED)
             addToSessionHistory(companionId)
+            setShowModal(true)
         }
         const onMessage = (message: Message) => { 
             if(message.type === "transcript" && message.transcriptType === "final"){
@@ -100,6 +104,12 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
    
     return (
     <section className='flex flex-col max-h-[70vh]  max-sm:p-5'>
+        <SessionFeedbackModal
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+                companionId={companionId}    
+                
+        />
         <section className='flex gap-8 max-sm:flex-col-reverse max-sm:max-h-140 max-sm:items-start max-h-440'>
             <div className='flex flex-col w-1/4 max-sm:w-full justify-between max-sm:gap-3'>
             <div className='companion-section '>
