@@ -82,14 +82,8 @@ const Profile = async () => {
             />
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="companions">
-          <AccordionTrigger className="text-2xl font-bold">
-            My Companions {`(${companions.length})`}
-          </AccordionTrigger>
-          <AccordionContent>
-            <CompanionsList title="My Companions" companions={companions} />
-          </AccordionContent>
-        </AccordionItem>
+        <CompanionsList title="Completed Lessons" companions={companions} classNames={'w-4/5'}/>
+
       </Accordion>
     </main>
   );

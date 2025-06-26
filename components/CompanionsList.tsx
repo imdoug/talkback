@@ -21,9 +21,9 @@ const CompanionsList = ({title, companions, classNames}: CompanionsListsProps) =
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="text-lg w-2/3">Lessons</TableHead>
-            <TableHead className="text-lg ">Subject</TableHead>
-            <TableHead className="text-lg text-right">Duration</TableHead>
+            <TableHead className="text-lg w-2/3 text-[#D1D4DC] uppercase">Lessons</TableHead>
+            <TableHead className="text-lg text-[#D1D4DC] uppercase">Subject</TableHead>
+            <TableHead className="text-lg text-righ text-[#D1D4DC] uppercase">Duration</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -32,7 +32,7 @@ const CompanionsList = ({title, companions, classNames}: CompanionsListsProps) =
                     <TableCell className="font-medium">
                         <Link href={`/companions/${id}`}>
                         <div className="flex items-center gap-2">
-                            <div className="size-[72px] justify-center flex items-center max-md:hidden"
+                            <div className="size-[72px] rounded-3xl justify-center flex items-center max-md:hidden"
                                 style={{backgroundColor: getSubjectColor(subject)}}>
                                 <Image 
                                     src={`/icons/${subject}.svg`} 
