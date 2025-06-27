@@ -139,14 +139,17 @@ body {
 }
 
 @layer components {
+  .home-hero-section {
+    @apply grid  md:grid-cols-3  lg:grid-cols-4 flex-wrap gap-4 w-full max-md:justify-center;
+  }
   .home-section {
     @apply flex gap-4 justify-between items-start w-full max-lg:flex-col-reverse max-lg:items-center;
   }
   .companions-grid {
-    @apply flex flex-wrap gap-4 w-full max-md:justify-center;
+    @apply grid  md:grid-cols-3  lg:grid-cols-4 flex-wrap gap-4 w-full max-md:justify-center;
   }
   .companion-card {
-    @apply flex flex-col rounded-4xl  flex-1  px-4 py-4 gap-5 w-full min-lg:max-w-[410px]  justify-between text-center;
+    @apply flex flex-col rounded-4xl items-stretch  px-4 py-4 gap-5 w-full min-lg:max-w-[410px]  justify-between text-center;
   }
   .subject-badge {
     @apply bg-[#272a4c] text-white rounded-4xl text-sm px-2 py-1 capitalize;
@@ -155,7 +158,7 @@ body {
     @apply px-2 bg-[#272a4c] rounded-4xl flex items-center h-full aspect-square cursor-pointer;
   }
   .input {
-    @apply !border-black !bg-white focus-visible:!ring-0 focus-visible:!border-black !w-full;
+    @apply !bg-white focus-visible:!ring-0 focus-visible:!border-black  !w-full;
   }
   .rounded-border {
     @apply rounded-4xl border border-black;

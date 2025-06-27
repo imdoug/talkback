@@ -44,7 +44,7 @@ const CompanionForm = () => {
             topic: '',
             voice: '',
             style: '',
-            duration: 15,
+            duration: 5,
         },
     })
 
@@ -72,7 +72,7 @@ const CompanionForm = () => {
                                 <Input
                                     placeholder="Enter the companion name"
                                     {...field}
-                                    className="input"
+                                    className="input rounded-2xl"
                                 />
                             </FormControl>
                             <FormMessage />
@@ -91,7 +91,7 @@ const CompanionForm = () => {
                                     value={field.value}
                                     defaultValue={field.value}
                                 >
-                                    <SelectTrigger className="input capitalize">
+                                    <SelectTrigger className="input capitalize rounded-2xl">
                                         <SelectValue placeholder="Select the subject" />
                                     </SelectTrigger>
                                     <SelectContent>
@@ -121,7 +121,7 @@ const CompanionForm = () => {
                                 <Textarea
                                     placeholder="Ex. Derivates & Integrals"
                                     {...field}
-                                    className="input"
+                                    className="input rounded-2xl"
                                 />
                             </FormControl>
                             <FormMessage />
@@ -141,7 +141,7 @@ const CompanionForm = () => {
                                     value={field.value}
                                     defaultValue={field.value}
                                 >
-                                    <SelectTrigger className="input">
+                                    <SelectTrigger className="input rounded-2xl">
                                         <SelectValue
                                             placeholder="Select the voice"
                                         />
@@ -172,7 +172,7 @@ const CompanionForm = () => {
                                     value={field.value}
                                     defaultValue={field.value}
                                 >
-                                    <SelectTrigger className="input">
+                                    <SelectTrigger className="input rounded-2xl">
                                         <SelectValue
                                             placeholder="Select the style"
                                         />
@@ -201,16 +201,18 @@ const CompanionForm = () => {
                             <FormControl>
                                 <Input
                                     type="number"
-                                    placeholder="15"
+                                    placeholder="5"
+                                    max={15}
+                                    min={0}
                                     {...field}
-                                    className="input"
+                                    className="input rounded-2xl "
                                 />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                <Button type="submit" className="w-full cursor-pointer">Build Your Companion</Button>
+                <Button type="submit" className="w-full cursor-pointer rounded-2xl">Build Your Companion</Button>
             </form>
         </Form>
     )

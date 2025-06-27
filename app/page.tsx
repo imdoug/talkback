@@ -10,7 +10,7 @@ const Page = async () => {
   return (
     <main>
       <h1 className="text-2xl">Popular Companions</h1>
-      <section className="home-section">
+      <section className="home-hero-section">
         {companions.map((companion)=>(
           <CompanionCard
             key={companion.id}

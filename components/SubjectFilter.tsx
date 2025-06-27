@@ -37,8 +37,8 @@ const SubjectFilter = () => {
       }, [router, searchParams, subject])
   return (
     <Select onValueChange={(value) => setSubject(value.toLocaleLowerCase())}>
-      <SelectTrigger className="input capitalize">
-        <SelectValue placeholder="Subject" />
+      <SelectTrigger className="input capitalize border-0 rounded-3xl px-4 py-5 h-fit">
+        <SelectValue placeholder="Select subject" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="all">All subjects</SelectItem>
