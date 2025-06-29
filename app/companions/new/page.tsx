@@ -10,7 +10,9 @@ const NewCompanion = async () => {
 
   if(!userId) redirect('/sign-in');
 
-  const canCreateCompanion = await newCompanionPermissions()
+  //const canCreateCompanion = await newCompanionPermissions()
+  //set the var uptop to true  to test the companion limit reached page
+  const canCreateCompanion = false;
 
   
   return (

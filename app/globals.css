@@ -182,7 +182,7 @@ body {
     @apply rounded-4xl px-7 pt-7 pb-10 max-lg:w-full bg-white;
   }
   .companion-limit {
-    @apply items-center justify-center flex flex-col gap-4 w-full min-2xl:w-1/2 pt-20 text-center;
+    @apply items-center justify-center flex flex-col gap-4 w-full  pt-20 text-center;
   }
 
   .companion-section {
@@ -231,5 +231,68 @@ main{
   background-color: #E1E5F9;
 }
 *{
-  font-family: inter;
+  font-family: inter!important;
+}
+/* Subscription page */
+.cl-pricingTableCard.cl-pricingTableCard__pro{
+  display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 30px;
+    border: 2px solid #272A4C;
+    background: #BDE7FF;
+}
+.cl-pricingTableCard.cl-pricingTableCard__pro .cl-internal-1j4qxlj{
+   background: #BDE7FF!important;
+}
+.cl-pricingTableCard.cl-pricingTableCard__core{
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 30px;
+    border: 2px solid ;
+    background: #FFDA6E;
+}
+.cl-pricingTableCard.cl-pricingTableCard__core .cl-internal-1j4qxlj{
+   background: #FFDA6E!important;
+}
+
+.cl-pricingTableCard.cl-pricingTableCard__basic{
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 30px;
+    border: 2px solid ;
+    background: #E5D0FF;
+}
+.cl-pricingTableCard.cl-pricingTableCard__basic .cl-internal-1j4qxlj{
+   background: #E5D0FF!important;
+}
+.cl-pricingTableCardHeader{
+  justify-content: center;
+}
+.cl-pricingTableCardHeader *{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+label.cl-switchRoot {
+    width: 100%;
+}
+
+.cl-internal-r61sc0 {
+    margin-top: auto;
+    width: 100%;
+}
+p.cl-pricingTableCardFeePeriodNotice {
+    width: 100%;
+}
+.cl-internal-1tpvhd8 {
+    font-size: 1.5rem;
 }
