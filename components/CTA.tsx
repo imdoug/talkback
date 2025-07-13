@@ -16,12 +16,12 @@ const CTA = () => {
             className='cta-image'
         /> */}
         <button className='btn-primary bg-white text-[#272a4c]'>
-            <Image
+            {/* <Image
                 src="/icons/plus.svg"
                 alt="Plus Icon"
                 width={16}
                 height={16}
-            />
+            /> */}
             <Link href="/companions/new">
                 <p>Build a New Companion</p>
             </Link>

@@ -10,7 +10,7 @@ export default function SignInPage() {
             Your Personal AI Tutors, Anytime.
           </h1>
           <p className="text-lg md:text-xl text-gray-700 mb-6">
-            Talkback brings you interactive, real-time speaking practice powered by AI vocal companions. Pick your learning style, practice naturally, and get instant feedback.
+            Yooly brings you interactive, real-time speaking practice powered by AI vocal companions. Pick your learning style, practice naturally, and get instant feedback.
           </p>
           <ul className="space-y-4 text-gray-700 text-base md:text-lg mb-8">
             <li>✅ Multiple AI learning companions with unique personalities</li>

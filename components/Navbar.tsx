@@ -9,10 +9,10 @@ const Navbar = () => {
         <Link href="/" >
             <div className="flex items-center gap-2.5 cursor-pointer">
                 <Image 
-                    src="/images/logo2.png" 
+                    src="/images/yooly.png" 
                     alt="Logo" 
-                    width={40} 
-                    height={40} />
+                    width={80} 
+                    height={80} />
             </div>
         </Link>
         <div className="flex items-center gap-8">
