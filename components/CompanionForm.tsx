@@ -203,7 +203,7 @@ const CompanionForm = () => {
                                     type="number"
                                     placeholder="5"
                                     max={15}
-                                    min={0}
+                                    min={1}
                                     {...field}
                                     className="input rounded-2xl "
                                 />

@@ -8,7 +8,7 @@ const Page = async () => {
   const companions = await getAllCompanions({limit: 4})
   const  recentSessionCompanions = await getRecentSessions(10)
   return (
-    <main>
+    <main className="gap-2">
       <h1 className="text-2xl">Popular Companions</h1>
       <section className="home-hero-section">
         {companions.map((companion)=>(

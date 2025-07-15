@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react'
 import soundwaves from '@/constants/soundwaves.json'
 import { addToSessionHistory } from '@/lib/actions/companion.actions'
 import SessionFeedbackModal from './SessionFeedbackModal'
+import SessionProgressBar from './SessionProgressBar'
 
 enum CallStatus {
     INACTIVE = "INACTIVE",
@@ -16,7 +17,7 @@ enum CallStatus {
     FINISHED = "FINISHED",
 }
 
-const CompanionComponent = ({companionId, subject, topic, name, userName, userImage, style, voice}: CompanionComponentProps) => {
+const CompanionComponent = ({companionId, subject, topic, name, userName, userImage, style, voice, duration}: CompanionComponentProps) => {
 
     const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE)
     const [isSpeaking, setIsSpeaking] = useState(false)
@@ -41,6 +42,7 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
     
 
    useEffect(() => {
+        console.log(duration)
         const onCallStart = () => setCallStatus(CallStatus.ACTIVE)
         const onCallEnd = () => {
             setCallStatus(CallStatus.FINISHED)
@@ -110,8 +112,8 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
                 companionId={companionId}    
                 
         />
-        <section className='flex gap-8 max-sm:flex-col-reverse max-sm:max-h-140 max-sm:items-start max-h-440'>
-            <div className='flex flex-col w-1/4 max-sm:w-full justify-between max-sm:gap-3'>
+        <section className='flex gap-2 max-sm:flex-col-reverse max-sm:max-h-140 max-sm:items-start max-h-440 '>
+            <div className='flex flex-col w-1/4 max-sm:w-full justify-between gap-2 max-sm:gap-3'>
             <div className='companion-section '>
                 <div className='companion-avatar' style={{backgroundColor: getSubjectColor(subject)}}>
                         <div className={cn('absolute transition-opacity duration-1000', callStatus === CallStatus.FINISHED || callStatus === CallStatus.INACTIVE ? 'opacity-1001' : 'opacity-0', callStatus === CallStatus.CONNECTING  && 'opacity-100 animate-pulse')} >
@@ -125,8 +127,8 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
                                 className='companion-lottie'
                             />
                         </div>
-                    </div>
-                    <p className='font-bold text-2xl'>{name}</p>
+                </div>
+                 <p className='font-bold text-2xl'>{name}</p>
             </div>
             <div className='flex justify-between'>
                     <button 
@@ -149,7 +151,7 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
                     </button> */}
                 </div>
                 <button 
-                        className={cn('rounded-lg py-2 cursor-pointer transition-colors w-full text-white',callStatus === CallStatus.ACTIVE  ? 'bg-red-700' : 'bg-primary', callStatus === CallStatus.CONNECTING && 'animate-pulse')} 
+                        className={cn('rounded-xl py-2 cursor-pointer transition-colors w-full text-white',callStatus === CallStatus.ACTIVE  ? 'bg-red-700' : 'bg-primary', callStatus === CallStatus.CONNECTING && 'animate-pulse')} 
                         onClick={callStatus === CallStatus.ACTIVE ? handleDisconnect : handleCall }>
                         {callStatus === CallStatus.ACTIVE ? 'End Session' : callStatus === CallStatus.CONNECTING ? 'Connecting' : 'Start Session'}
                 </button>
@@ -184,6 +186,11 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
                 </div>
             </div>
         </section>
+        <SessionProgressBar 
+            duration={duration} 
+            color={getSubjectColor(subject)} 
+            started={callStatus === CallStatus.ACTIVE}
+        />
     </section>
 )
 }

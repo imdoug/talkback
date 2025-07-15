@@ -14,9 +14,9 @@ const CompanionsLibrary = async ({searchParams}: SearchParams) => {
 
   return (
     <main>
-      <section className="flex justify-between gap-4 max-sm:flex-col ">
+      <section className="flex justify-between gap-2 max-sm:flex-col ">
       <h1 className="text-[#272a4c] opacity-15">YOOLY LIBRARY</h1>
-      <div className="flex gap-4">
+      <div className="flex gap-2">
         <SearchInput/>
         <SubjectFilter />
 

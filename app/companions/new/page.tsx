@@ -18,7 +18,7 @@ const NewCompanion = async () => {
   return (
     <main className="min-lg:w-1/3 min-md:w-2/3 items-center justify-center">
             {canCreateCompanion ? (
-                <article className="w-full gap-4 flex flex-col">
+                <article className="w-full gap-2 flex flex-col">
                     <h1 className="text-[#272A4C33] text-3xl">YOOLY BUILDER</h1>
                     <CompanionForm />
                 </article>

@@ -24,10 +24,10 @@ const Profile = async () => {
   const bookmarkedCompanions = await getBookmarkedCompanions(user.id);
 
   return (
-    <main className="min-lg:w-4/4 w-full">
-      <section className="flex gap-4 max-sm:flex-col items-stretch w-full h-[330px] max-sm:h-[100%] max-sm:p-2">
+    <main className="min-lg:w-4/4 w-full gap-2">
+      <section className="flex gap-2 max-sm:flex-col items-stretch w-full h-[330px] max-sm:h-[100%] max-sm:p-2">
         {/* Left Side */}
-      <div className="flex items-center gap-4 flex-1 max-w-[50%] max-sm:max-w-[100%] max-sm:w-full bg-white p-6 rounded-3xl h-full">
+      <div className="flex items-center gap-2 flex-1 max-w-[50%] max-sm:max-w-[100%] max-sm:w-full bg-white p-6 rounded-3xl h-full">
 
       {/* Image */}
       <div className="h-full aspect-[3/4] rounded-[1.5rem] overflow-hidden">
@@ -64,7 +64,7 @@ const Profile = async () => {
 
 
   {/* Right Side */}
-  <div className="flex gap-4 items-stretch flex-1 max-w-[50%] max-sm:max-w-[100%] max-sm:w-full h-full">
+  <div className="flex gap-2 items-stretch flex-1 max-w-[50%] max-sm:max-w-[100%] max-sm:w-full h-full">
     <div className="flex flex-col justify-around h-full border p-5 bg-background rounded-3xl flex-1">
       <p className="text-8xl font-bold">{sessionHistory.length}</p>
       <div className="text-2xl font-bold text-[#D1D4DC]">
@@ -89,7 +89,7 @@ const Profile = async () => {
   </div>
 
       </section>
-      <section className="flex gap-4 max-sm:flex-col w-full h-full max-sm:p-2 max-sm:align-center">
+      <section className="flex gap-2 max-sm:flex-col w-full h-full max-sm:p-2 max-sm:align-center">
         <CompanionsList
           title="Completed Lessons"
           companions={companions}
