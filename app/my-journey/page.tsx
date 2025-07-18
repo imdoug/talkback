@@ -82,7 +82,7 @@ const Profile = async () => {
         Yoolys created
       </div>
       <p className="text-sm">
-        The more companions you create, the more ways you unlock to learn and
+        The more Yoolys you create, the more ways you unlock to learn and
         grow. Keep going!
       </p>
     </div>

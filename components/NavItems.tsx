@@ -9,12 +9,13 @@ const navItems = [
   {label: 'Home', href: '/'},
   {label: 'Library', href: '/companions'},
   {label: 'My Journey', href: '/my-journey'},
+  {label: 'Contact', href: '/contact'},
 ]
 const NavItems = () => {
   const pathname = usePathname()
 
   return (
-    <nav className='flex items-center gap-2'>
+    <nav className='flex items-center gap-3'>
       {navItems.map(({label, href}) => (
         <Link
           key={label}

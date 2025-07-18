@@ -29,7 +29,7 @@ const NewCompanion = async () => {
                             Upgrade your plan
                         </div>
                         <h1>You’ve Reached Your Limit</h1>
-                        <p>You’ve reached your companion limit. Upgrade to create more companions and premium features.</p>
+                        <p>You’ve reached your Yooly limit. Upgrade to create more Yoolys and premium features.</p>
                         <Link href="/subscription" className="btn-primary w-full justify-center" >
                             Upgrade My Plan
                         </Link>

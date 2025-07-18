@@ -17,7 +17,7 @@ enum CallStatus {
     FINISHED = "FINISHED",
 }
 
-const CompanionComponent = ({companionId, subject, topic, name, userName, userImage, style, voice, duration}: CompanionComponentProps) => {
+const CompanionComponent = ({companionId, subject, topic, name, userName, style, voice, duration}: CompanionComponentProps) => {
 
     const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE)
     const [isSpeaking, setIsSpeaking] = useState(false)
@@ -112,7 +112,7 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
                 companionId={companionId}    
                 
         />
-        <section className='flex gap-2 max-sm:flex-col-reverse max-sm:max-h-140 max-sm:items-start max-h-440 '>
+        <section className='flex gap-2 max-sm:flex-col-reverse max-sm:max-h-140 max-sm:items-start max-h-400 '>
             <div className='flex flex-col w-1/4 max-sm:w-full justify-between gap-2 max-sm:gap-3'>
             <div className='companion-section '>
                 <div className='companion-avatar' style={{backgroundColor: getSubjectColor(subject)}}>
@@ -149,15 +149,15 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
                             Repeat
                         </p>
                     </button> */}
-                </div>
+            </div>
                 <button 
                         className={cn('rounded-xl py-2 cursor-pointer transition-colors w-full text-white',callStatus === CallStatus.ACTIVE  ? 'bg-red-700' : 'bg-primary', callStatus === CallStatus.CONNECTING && 'animate-pulse')} 
                         onClick={callStatus === CallStatus.ACTIVE ? handleDisconnect : handleCall }>
                         {callStatus === CallStatus.ACTIVE ? 'End Session' : callStatus === CallStatus.CONNECTING ? 'Connecting' : 'Start Session'}
                 </button>
             </div>
-            <section className="transcript w-2/4 max-sm:w-full max-sm:min-h-200 pt-0 max-h-[440px]">
-                <div className="transcript-message no-scrollbar overflow-scroll">
+            <section className="transcript w-3/4 max-sm:w-full max-sm:min-h-200 pt-0 max-h-[400px]">
+                <div className="transcript-message min-h-100 p-5 no-scrollbar overflow-scroll">
                     {messages.map((message, index) => {
                         if(message.role === 'assistant') {
                             return (
@@ -178,13 +178,13 @@ const CompanionComponent = ({companionId, subject, topic, name, userName, userIm
                 </div>
 
                 <div className="transcript-fade" />
-        </section>
-            <div className='user-section max-sm:hidden'>
+            </section>
+            {/* <div className='user-section max-sm:hidden'>
                 <div className='user-avatar relative min-h-110'>
                     <Image src={userImage} alt={userName} width={130} height={130} className='rounded-lg absolute top-0 left-1/2 -translate-x-1/2 h-full w-auto object-cover' />
                     <p className='font-bold text-2xl absolute bottom-5 bg-white py-2 px-4 rounded-2xl'>{userName}</p>
                 </div>
-            </div>
+            </div> */}
         </section>
         <SessionProgressBar 
             duration={duration} 

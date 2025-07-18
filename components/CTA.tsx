@@ -1,4 +1,4 @@
-import Image from 'next/image'
+
 import React from 'react'
 import Link from 'next/link'
 
@@ -23,7 +23,7 @@ const CTA = () => {
                 height={16}
             /> */}
             <Link href="/companions/new">
-                <p>Build a New Companion</p>
+                <p>Build a New Yooly</p>
             </Link>
         </button>
         <p className='text-sm'>No credit card required</p>

@@ -54,23 +54,23 @@ const CompanionForm = () => {
         if(companion) {
             redirect(`/companions/${companion.id}`);
         } else {
-            console.log('Failed to create a companion');
+            console.log('Failed to create a yooly');
             redirect('/');
         }
     }
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 py-8 bg-[rgba(234,237,251,1)] px-5 rounded-3xl">
                 <FormField
                     control={form.control}
                     name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Companion name</FormLabel>
+                            <FormLabel>Yooly name</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="Enter the companion name"
+                                    placeholder="Enter the yooly name"
                                     {...field}
                                     className="input rounded-2xl"
                                 />
@@ -116,7 +116,7 @@ const CompanionForm = () => {
                     name="topic"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>What should the companion help with?</FormLabel>
+                            <FormLabel>What should the yooly help with?</FormLabel>
                             <FormControl>
                                 <Textarea
                                     placeholder="Ex. Derivates & Integrals"
@@ -212,7 +212,7 @@ const CompanionForm = () => {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" className="w-full cursor-pointer rounded-2xl">Build Your Companion</Button>
+                <Button type="submit" className="w-full cursor-pointer rounded-2xl">Build Your Yooly</Button>
             </form>
         </Form>
     )
