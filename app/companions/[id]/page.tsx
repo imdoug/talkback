@@ -5,8 +5,6 @@ import { getSubjectColor } from "@/lib/utils";
 import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import SessionProgressBar from "@/components/SessionProgressBar";
-
 
 interface CompanionSessionPageProps {
   params: Promise<{ id: string }>

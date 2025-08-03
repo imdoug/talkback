@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useUser } from '@clerk/nextjs'
 
 export default function ContactForm() {
   const [form, setForm] = useState({
@@ -10,6 +11,8 @@ export default function ContactForm() {
     subject: '',
     message: '',
   })
+    const { user } = useUser()
+    console.log("User in Home Page:", user)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
