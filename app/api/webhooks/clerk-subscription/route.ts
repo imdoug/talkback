@@ -1,43 +1,33 @@
-import { NextResponse } from "next/server";
-import { clerkClient } from "@clerk/nextjs/server";
+import { NextRequest } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
-// Supabase admin client
-const supabaseAdmin = createClient(
+const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-export async function POST(req: Request) {
-  const event = await req.json();
+export async function POST(req: NextRequest) {
+  const body = await req.json();
+  const subscription = body.data;
+  const clerkUserId = subscription.payer.user_id; // e.g., user_abc123
 
-  if (event.type === "subscription.updated") {
-    const clerkUserId = event.data.id;
-    const plan = event.data.plan?.name?.toLowerCase() ?? "free";
+  const currentPlan =
+    subscription.items.find((item: any) => item.status === "active") ??
+    subscription.items.find((item: any) => item.status === "upcoming") ??
+    subscription.items.find((item: any) => item.status === "canceled");
 
-    console.log(`🔁 Clerk subscription updated: ${clerkUserId} → ${plan}`);
+  const planSlug = currentPlan?.plan?.slug ?? "basic";
 
-    // Update Clerk metadata
-    const clerk = await clerkClient();
-    await clerk.users.updateUserMetadata(clerkUserId, {
-      publicMetadata: {
-        subscription: { plan },
-      },
-    });
+  const { error } = await supabase
+    .from("users")
+    .update({ current_plan: planSlug })
+    .eq("id", clerkUserId); // You use id as the Clerk ID
 
-    // Update Supabase profile
-    const { error } = await supabaseAdmin
-      .from("profiles")
-      .update({ current_plan: plan })
-      .eq("id", clerkUserId);
-
-    if (error) {
-      console.error("❌ Supabase update error:", error);
-      return new NextResponse("Supabase error", { status: 500 });
-    }
-
-    return NextResponse.json({ success: true });
+  if (error) {
+    console.error("❌ Failed to update plan:", error);
+    return new Response("Error updating plan", { status: 500 });
   }
 
-  return new NextResponse("Unhandled event", { status: 400 });
+  console.log(`✅ Updated user ${clerkUserId} to plan: ${planSlug}`);
+  return new Response("OK", { status: 200 });
 }
