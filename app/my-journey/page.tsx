@@ -17,6 +17,7 @@ import { redirect } from "next/navigation";
 
 const Profile = async () => {
   const user = await currentUser();
+  console.log("Current user:", user);
   if (!user) redirect("/");
 
   const companions = await getUserCompanions(user.id);
